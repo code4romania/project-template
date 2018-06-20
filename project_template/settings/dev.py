@@ -26,6 +26,9 @@ INTERNAL_IPS = ['127.0.0.1', 'localhost']
 
 AUTH_PASSWORD_VALIDATORS = []
 
+MOONSHEEP_TASK_SOURCE = 'random'
+MOONSHEEP_BASE_TASKS = ['project-template.tasks.TaskWithForm', 'project-template.tasks.TaskWithTemplate']
+
 # Add debug toolbar
 if DEBUG:
     INSTALLED_APPS += ['debug_toolbar', 'django_extensions']
