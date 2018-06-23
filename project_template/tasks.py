@@ -11,6 +11,7 @@ from unittest.mock import MagicMock
 
 class TaskWithForm(AbstractTask):
     task_form = SimpleForm
+    template_name = 'task.html'
 
     def create_mocked_task(self, task_data):
         """
@@ -24,7 +25,7 @@ class TaskWithForm(AbstractTask):
         """
 
         task_data['info'].update({
-            'url': 'http://www.parlament.hu/internet/cplsql/ogy_vagyonpub.vagyon_kiir_egys?P_FNEV=/2016/l001_j0161231k.pdf&p_cont=application/pdf',
+            'url': 'http://www.cdep.ro/declaratii/deputati/2016/avere/002a.pdf',
             'page': 10
         })
 
@@ -81,7 +82,7 @@ class TaskWithForm(AbstractTask):
 
 
 class TaskWithTemplate(AbstractTask):
-    task_form_template = 'tasks/with_template.html'
+    template_name = 'tasks/with_template.html'
 
     # verify_title = verifiers.equals
     # verifiers = [verifiers.GeoProximity(10, "lat", "long")]
