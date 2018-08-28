@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class Institute(Enum):
+class Institution(Enum):
     GOVERNMENT = "Guvernul Romaniei"
     PARLIAMENT = "Parlamentul Romaniei "
     SENATE = "Senat"
