@@ -103,3 +103,17 @@ class TaskWithTemplate(AbstractTask):
             publisher=verified_data['publisher'],
             pages_total=verified_data['pages_total']
         )
+
+
+class RealEstateTableRowsTask(AbstractTask):
+    template_name = 'tasks/real_estate_table_rows.html'
+    url = 'http://www.cdep.ro/declaratii/deputati/2016/avere/002a.pdf'
+
+    def save_verified_data(self, verified_data: dict):
+        pass
+
+    def get_presenter(self):
+        return {
+            'template': self.template_name,
+            'url': self.url
+        }
