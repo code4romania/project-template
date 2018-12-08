@@ -1,6 +1,7 @@
 import datetime
 
 from moonsheep.tasks import AbstractTask
+from moonsheep.decorators import register
 from moonsheep import verifiers
 
 from .forms import *
@@ -8,7 +9,23 @@ from .models import *
 
 from unittest.mock import MagicMock
 
+@register()
+class TaskDateIdentificare(AbstractTask):
+    task_form = SimpleForm
+    template_name = 'identificare.html'
 
+    def create_mocked_task(self, task_data):
+        task_data['info'].update({
+            'url': 'http://www.cdep.ro/declaratii/deputati/2016/avere/024.pdf',
+            'page': 10
+        })
+
+        return task_data
+
+    def get_presenter(self):
+        return super(TaskDateIdentificare, self).get_presenter()
+
+@register()
 class TaskWithForm(AbstractTask):
     task_form = SimpleForm
     template_name = 'task.html'
@@ -78,28 +95,4 @@ class TaskWithForm(AbstractTask):
         :param verified_data:
         :return:
         """
-        self.create_new_task(TaskWithTemplate, {'page': 11})
-
-
-class TaskWithTemplate(AbstractTask):
-    template_name = 'tasks/with_template.html'
-
-    # verify_title = verifiers.equals
-    # verifiers = [verifiers.GeoProximity(10, "lat", "long")]
-
-    def save_verified_data(self, verified_data):
-        """
-        Inputs provided by volunteers has been cross-checked.
-        Please save them here to your data model
-
-        :param verified_data: data as provided in the form
-        :return:
-        """
-
-        Document = MagicMock()  # quick hack, instead of defining it in models.py
-
-        Document.objects.get_or_create(
-            title=verified_data['title'],
-            publisher=verified_data['publisher'],
-            pages_total=verified_data['pages_total']
-        )
+        self.create_new_task(TaskDateIdentificare, {'page': 11})
