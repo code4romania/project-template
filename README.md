@@ -1,3 +1,5 @@
+DO NOT USE THIS REPO ANYMORE - MOVED TO https://github.com/code4romania/catpol-declaratii
+
 # project-template
 Project template for Code4Romania Moonsheep implementation.
 Starting from this templates, additional tasks can be added in tasks.py to be run by the platform.
